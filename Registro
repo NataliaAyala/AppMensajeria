@@ -1,0 +1,91 @@
+<!Doctype html>
+<!-- Basado en http://gonzasilve.wordpress.com/2012/05/23/autenticacion-de-usuarios-en-php-y-mysql/ -->
+
+
+<html>
+<!-- Registro -->
+<head  > 
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<!-- <tittle> Front END </tittle> -->
+	<script type="text/javascript"></script>
+<link rel="stylesheet" href="css/estilos.css"/>
+</head>
+<header>
+    
+	
+	<figure class="GATO">
+    <img src="images/gato.png" alt="gato"/>
+	</figure>
+	
+	<h1> CATNIP</h1><br>
+	
+</header>
+<body>
+<section class="sect">
+
+	<form name="user_form" action="guardarRegistro" method="POST">
+
+	<input  class="rect" type="text"  name="name" placeholder="Nombre" size="30" maxlength="100" />
+	<br/><br/>
+
+	<input  class="rect" type="text"  name="name" placeholder="Apellido" size="30" maxlength="100" />
+	<br/><br/>
+
+	<input  class="rect" type="text"  name="name" placeholder="Username" size="30" maxlength="100" />
+	<br/><br/>
+
+	<input class="rect" type="text"  name="email" placeholder="e-mail" size="30" maxlength="100"/>
+	<br/><br/>
+	<input class="rect" type="password" name="passA" placeholder="Password"  size="30" maxlength="100"/>
+
+<br/><br/>
+
+	<input  class="rect" type="password" name="passB" placeholder="Repetir Password" size="30" maxlength="100"/>
+	
+<br><br>
+
+	<input class="bot" id="bot" type="submit" name="crear" value="Regístrate" size="30" maxlength="100"/>
+
+
+<!-- 
+Proceso para alertar al usuario cuando hayan espacios o cuando el password no coincida, en el cual recibí ayuda de Nicodemus Luna -->
+
+	<?php
+
+	if( isset( $_POST['status_registro'] ) )
+	{
+	switch( $_POST['status_registro'] )
+	{
+	case 1:
+	?>
+	<script type="text/javascript"> 
+	alert("NO coinciden las contraseñas");
+	</script>
+	<?php
+	break;          
+	case 2:
+	?>
+	<script type="text/javascript"> 
+	alert("Hay espacios sin rellenar");
+	</script>
+	<?php       
+	break;
+	}
+	}
+	?>
+
+
+	</form>
+
+	<br><br><br>
+
+	<p> <a class="call-to-action" href="ISesion">Inicia Sesión</a></p>
+
+
+
+
+</section>
+
+
+</body>
+</html

@@ -1,0 +1,68 @@
+
+
+<!Doctype html>
+<html>
+<!-- Registro -->
+<head  > 
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<!-- <tittle> Front END </tittle> -->
+	<script type="text/javascript"></script>
+<link rel="stylesheet" href="css/estilos.css"/>
+</head>
+<header>
+    <div class="Tema">
+	
+	<figure class="GATO">
+    <img src="images/gato.png" alt="gato"/>
+	</figure>
+	
+	<h1> CATNIP</h1><br>
+	</div>
+</header>
+	<body>
+
+    
+<section class="sect">
+    <form id="frm" name"log" method="POST" action ="VUsuario">		
+
+
+<input class="rect" type="text" name="usuario" placeholder="Username" id="usuario" class="required" maxlength="50">
+    <br><br>
+<input class="rect" type="password" name="password" placeholder="Password" id="password" class="required"  maxlength="50">
+ <br><br>
+<input class="bot" id="bot" type="submit" name="enviar" value="Inicia sesión">
+ <br><br>
+<p> ó  </p>
+ <br><br>
+<a  href="Registro">Registrate</a>
+<?php
+
+   
+if( isset( $_POST['msg_error'] ) )
+{
+switch( $_POST['msg_error'] )
+	{
+	case 1:
+	?>
+	<script type="text/javascript"> 
+	alert("El usuario ingresado o el nombre no existe.");
+	</script>
+	<?php
+	break;          
+	case 2:
+	?>
+	<script type="text/javascript"> 
+	alert("No puedes entrar si no tienes cuenta");
+		</script>
+		<?php       
+break;
+}
+?>
+</form>
+
+
+</section>
+	
+</body>
+
+</html>

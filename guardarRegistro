@@ -1,0 +1,43 @@
+<?php
+
+
+/*Compara la informacion ingresada con la de BD*/
+include_once("includes/database.php");
+
+$link=Conectarse();
+$name = $_POST['name'];
+$surname= $_POST['surname'];
+$email = $_POST['email'];
+$username = $_POST['username'];
+$passA = $_POST['passA'];
+$passB = $_POST['passB'];
+
+$query = sprintf("SELECT usuario FROM datos WHERE datos.usuario = '%s'", $username); 
+
+$result=mysql_query($query,$link);
+
+
+if(mysql_num_rows($result)){
+	echo "Este usuario ya ha sido registrado";
+} else {
+
+	mysql_free_result($result);
+
+	if($passA!=$passB) {
+		echo "No coinciden las contraseñas";
+	} else {
+
+		$query = sprintf("INSERT INTO datos (nombre, apellido, usuario, correo, contraseña)
+		VALUES ('%s', '%s', '%s', '%s', '%s')", $name, $surname, $username, $email, $passA);
+
+		$result=mysql_query($query,$link);
+
+		if(mysql_affected_rows()){
+			header("Location: ISesion");
+		} else {
+			echo "Hubo un error vuelva a intentarlo";
+		}
+	}
+}
+
+?>

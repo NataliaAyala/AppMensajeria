@@ -1,0 +1,47 @@
+<?php
+ 
+    include("includes/database.php"); 
+    conectarse();
+     
+    $user = $_POST['usuario'];
+    $pass = $_POST['contraseña'];
+
+    $pass_encrypt = md5($pass);
+     
+    $query = "SELECT id FROM datos WHERE usuario = '".$user."'AND contraseña = '".$pass_encrypt."' ";  
+    $result = mysql_query($query, $link); 
+ 
+    $user_id = "";
+     
+  
+    if( $fila=mysql_fetch_array($result) )
+    {       
+              
+        $user_id = $fila['id'];
+       
+        session_start();
+      
+        $_SESSION['autenticado'] = 'SI'; //Guarda la variable del usuario
+     
+        $_SESSION['user_id'] = $user_id;
+  
+?>
+        <form name="formulario" method="post" action="main.php">
+            <input type="hidden" name="idUsr" value='<?php echo $user_id ?>' />
+        </form>
+<?php
+    }
+    else {//MANDA CODIGO DE ERROR
+    
+?>
+        <form name="formulario" method="post" action="index.php">
+            <input type="hidden" name="msg_error" value="1">
+        </form>
+<?php
+    }
+?>
+                     
+<script type="text/javascript"> 
+   
+    document.formulario.submit();
+</script>
